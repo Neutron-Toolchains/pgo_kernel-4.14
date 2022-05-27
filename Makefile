@@ -727,8 +727,12 @@ KBUILD_LDFLAGS += $(POLLY_FLAGS)
 endif
 
 ifdef CONFIG_INLINE_OPTIMIZATION
-KBUILD_CFLAGS	+= -mllvm -inline-threshold=4000
-KBUILD_CFLAGS	+= -mllvm -inlinehint-threshold=3000
+INLINE_FLAGS	:= -mllvm -inline-threshold=4000 \
+		   -mllvm -inlinehint-threshold=3000
+
+KBUILD_CFLAGS += $(INLINE_FLAGS)
+KBUILD_AFLAGS += $(INLINE_FLAGS)
+KBUILD_LDFLAGS += $(INLINE_FLAGS)
 endif
 
 endif
